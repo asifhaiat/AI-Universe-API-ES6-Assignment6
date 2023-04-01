@@ -15,15 +15,16 @@ const getAiUniverseHubData = async () => {
 /* Display AI Universe Hub Data in Frontend */
 const showAiTools = (tools) => {
   console.log(tools);
+
   // display only 6 ai tools
-  /* const showMore = document.getElementById("show-more");
+  const showMore = document.getElementById("show-more");
   if (tools.length > 6) {
     tools = tools.slice(0, 6);
     showMore.classList.remove("hidden");
   } else {
     showMore.classList.add("hidden");
-  } */
-
+  }
+// 
   const aiToolsContainer = document.getElementById("ai-tools-container");
   tools.forEach((tool) => {
     const aiDiv = document.createElement("div");
