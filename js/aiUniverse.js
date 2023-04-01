@@ -34,17 +34,23 @@ const showAiTools = (tools) => {
     const aiDiv = document.createElement("div");
     aiDiv.innerHTML = `
       <div class="border border-gray-300 rounded-md p-5 mt-10 shadow-md hover:-translate-y-1 hover:ease-in duration-300">
-        <img src="${tool.image}" class="w-96 rounded-md mx-auto" />
+        <img src="${tool.image ? tool.image : "No Image Found"}" class="w-96 rounded-md mx-auto" />
         <div class="px-5">
             <h2 class="font-bold mt-2 mb-3">Features:</h2>
             <ul class="p-5 list-decimal">
-            ${tool.features.map((feature) => `<li>${feature}</li>`).join("")}
-            </ul>
+            ${
+              tool.features.length > 0
+                ? tool.features.map((feature) => `<li>${feature}</li>`).join("")
+                : "<li>No features found</li>"
+            }
+          </ul>          
             <hr>
             <div class="flex justify-between items-center">
               <div>
-                <h1 class="font-bold mt-5">${tool.name}</h1>
-                <p><i class="fa-solid fa-calendar-days"></i>&nbsp${tool.published_in}</p>
+                <h1 class="font-bold mt-5">${tool.name ? tool.name : "No name found"}</h1>
+                <p><i class="fa-solid fa-calendar-days"></i>&nbsp${
+                  tool.published_in ? tool.published_in : "No published date found"
+                }</p>
               </div>
               <div>
                 <button class="bg-[#FEF7F7] px-4 py-3 rounded-full color-[#EB5757]"><i class="fa-solid fa-arrow-right"></i></button>
