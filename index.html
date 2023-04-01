@@ -17,8 +17,20 @@
     <main>
       <section class="">
         <div class="md:grid grid-cols-3 gap-4" id="ai-tools-container"></div>
+        <div id="show-more" class="text-center mb-10 hidden">
+          <button class="text-center mt-3 bg-[#EB5757] px-3 py-3 text-white font-normal rounded-md" id="show-more-btn">
+            Show more
+          </button>
+        </div>
+      </section>
+      <!-- Loading Spinner -->
+      <section id="loading-spinner" class="hidden">
+        <div class="flex items-center justify-center h-screen w-screen bg-pink-50 opacity-75 fixed top-0 left-0">
+          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-red-500"></div>
+        </div>
       </section>
     </main>
+
     <!-- JavaScript File -->
     <script src="js/aiUniverse.js"></script>
   </body>
