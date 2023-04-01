@@ -36,6 +36,16 @@ const showAiTools = (tools) => {
             <ul class="p-5 list-decimal">
               <li>${features}</li>
             </ul>
+            <hr>
+            <div class="flex justify-between items-center">
+              <div>
+                <h1 class="font-bold mt-5">${tool.name}</h1>
+                <p><i class="fa-solid fa-calendar-days"></i>&nbsp${tool.published_in}</p>
+              </div>
+              <div>
+                <button class="bg-[#FEF7F7] px-4 py-3 rounded-full color-[#EB5757]"><i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
         </div>
       </div>
     `;
