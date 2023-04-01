@@ -3,6 +3,10 @@ const getAiUniverseHubData = async () => {
   try {
     // show loading spinner
     toggleSpinner(true);
+
+    // wait for 2 seconds to simulate loading time
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     const url = "https://openapi.programming-hero.com/api/ai/tools";
     const res = await fetch(url);
     const data = await res.json();
@@ -14,7 +18,7 @@ const getAiUniverseHubData = async () => {
 
 /* Display AI Universe Hub Data in Frontend */
 const showAiTools = (tools) => {
-  console.log(tools);
+  // console.log(tools);
 
   // display only 6 ai tools
   const showMore = document.getElementById("show-more");
@@ -24,18 +28,17 @@ const showAiTools = (tools) => {
   } else {
     showMore.classList.add("hidden");
   }
-// 
+
   const aiToolsContainer = document.getElementById("ai-tools-container");
   tools.forEach((tool) => {
     const aiDiv = document.createElement("div");
-    const features = tool.features.join("</li><li>");
     aiDiv.innerHTML = `
       <div class="border border-gray-300 rounded-md p-5 mt-10 shadow-md hover:-translate-y-1 hover:ease-in duration-300">
-        <img src="${tool.image}" class="w-96 rounded-md" />
-        <div>
+        <img src="${tool.image}" class="w-96 rounded-md mx-auto" />
+        <div class="px-5">
             <h2 class="font-bold mt-2 mb-3">Features:</h2>
             <ul class="p-5 list-decimal">
-              <li>${features}</li>
+            ${tool.features.map((feature) => `<li>${feature}</li>`).join("")}
             </ul>
             <hr>
             <div class="flex justify-between items-center">
@@ -70,14 +73,12 @@ const toggleSpinner = (isLoading) => {
 /*  add show more button event listener, add spinner,  displayed rest ofo the data*/
 document.getElementById("show-more-btn").addEventListener("click", function () {
   // console.log("Show more button clicked");
+
   // start loader
   toggleSpinner(true);
-  // get all ai tools
-  fetch("https://openapi.programming-hero.com/api/ai/tools")
-    .then((response) => response.json())
-    .then((data) => {
-      showAiTools(data.data.tools);
-    });
+
+  // load more data
+  getAiUniverseHubData();
 });
 
 // load the initial ai tools
