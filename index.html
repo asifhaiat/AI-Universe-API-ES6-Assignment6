@@ -43,27 +43,28 @@
             <div
               class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
             >
-              <!--header-->
-              <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                <h3 class="text-3xl font-semibold">Modal Title</h3>
-                <button
-                  class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                  onclick="toggleModal('aiHubDetailsModal')"
-                >
-                  <span
-                    class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none"
-                  >
-                    x
-                  </span>
-                </button>
-              </div>
               <!--body-->
-              <div class="relative p-6 flex-auto">
-                <p class="my-4 text-blueGray-500 text-lg leading-relaxed">
-                  I always felt like I could do anything. Thats the main thing people are controlled by! Thoughts- their
-                  perception of themselves! They're slowed down by their perception of themselves. If you're taught you
-                  cant do anything, you wont do anything. I was taught I could do everything.
-                </p>
+              <div class="relative p-6 flex gap-2 rounded " id="modal-features">
+                <!-- AI Hub Description -->
+                <div class="bg-rose-50 p-3">
+                  <h1 id="modal-heading" class="font-semibold text-lg text-justify"></h1>
+                </div>
+                <div>
+                  <!-- Features -->
+                  <div>
+
+                  </div>
+                  <!-- Integration -->
+                  <div>
+                    
+                  </div>
+                </div>
+                <!-- AI Hub Picture -->
+                <div class="border border-gray-300 mx-auto rounded p-3 " id="modal-examples">
+                  <img class="rounded" id="modal-img" />
+                  <h1 id="modal-img-heading" class="font-bold text-center mt-2"></h1>
+                  <p id="modal-img-para" class="text-center font-normal"></p>
+                </div>
               </div>
               <!--footer-->
               <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
@@ -73,13 +74,6 @@
                   onclick="toggleModal('aiHubDetailsModal')"
                 >
                   Close
-                </button>
-                <button
-                  class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                  onclick="toggleModal('aiHubDetailsModal')"
-                >
-                  Save Changes
                 </button>
               </div>
             </div>

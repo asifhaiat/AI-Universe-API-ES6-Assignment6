@@ -116,19 +116,27 @@ document.getElementById("show-more-btn").addEventListener("click", async functio
 /* Modal */
 const loadAiHubDetails = async (id) => {
   try {
-    // show loading spinner
-    // toggleSpinner(true);
-
     // wait for 1 second to simulate loading time
     await new Promise((resolve) => setTimeout(resolve, 1000));
-
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     const res = await fetch(url);
     const data = await res.json();
-    console.log(data);
+    displayAIHubDetails(data.data);
   } catch (error) {
     console.error(`Error loading AI Universe Hub data: ${error}`);
   }
+};
+
+const displayAIHubDetails = (tool) => {
+  console.log(tool);
+  const modalHeading = document.getElementById("modal-heading");
+  modalHeading.innerText = tool.description ? tool.description : "No description found";
+  const modalImg = document.getElementById("modal-img");
+  modalImg.src = tool.image_link[0] ? tool.image_link[0] : "No Image Found";
+  const modalImgHeading = document.getElementById("modal-img-heading");
+  modalImgHeading.innerText = tool.input_output_examples[0].input ? tool.input_output_examples[0].input : "No input found";
+  const modalImgPara = document.getElementById('modal-img-para');
+  modalImgPara.innerText = tool.input_output_examples[0].output ? tool.input_output_examples[0].output : "No output found";
 };
 
 // load the initial ai tools
