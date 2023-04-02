@@ -51,10 +51,12 @@ const showAiTools = (tools) => {
                   tool.published_in ? tool.published_in : "No published date found"
                 }</p>
               </div>
-              <div>
-                <button type="button"
-                onclick="toggleModal('aiHubDetailsModal')" class="bg-[#FEF7F7] px-4 py-3 rounded-full color-[#EB5757]"><i class="fa-solid fa-arrow-right"></i></button>
-              </div>
+              <button type="button"
+              onclick="toggleModal('aiHubDetailsModal'); loadAiHubDetails('${tool.id}')" 
+              class="bg-[#FEF7F7] px-4 py-3 rounded-full color-[#EB5757]">
+              <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              
             </div>
         </div>
       </div>
@@ -69,11 +71,6 @@ const showAiTools = (tools) => {
   } else {
     showMore.classList.add("hidden");
   }
-
-  /* // hide "Show more" button if all tools are displayed
-  if (toolsData.length === document.querySelectorAll(".border").length) {
-    document.getElementById("show-more").classList.add("hidden");
-  } */
 };
 
 /* Loading Spinner Function */
@@ -117,6 +114,22 @@ document.getElementById("show-more-btn").addEventListener("click", async functio
 });
 
 /* Modal */
+const loadAiHubDetails = async (id) => {
+  try {
+    // show loading spinner
+    // toggleSpinner(true);
+
+    // wait for 1 second to simulate loading time
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
+  } catch (error) {
+    console.error(`Error loading AI Universe Hub data: ${error}`);
+  }
+};
 
 // load the initial ai tools
 getAiUniverseHubData();
