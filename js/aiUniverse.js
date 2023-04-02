@@ -22,7 +22,7 @@ const getAiUniverseHubData = async () => {
 /* Display AI Universe Hub Data in Frontend */
 
 const showAiTools = (tools) => {
-  console.log(tools);
+  // console.log(tools);
 
   // hide the spinner
   toggleSpinner(false);
@@ -42,7 +42,7 @@ const showAiTools = (tools) => {
                 ? tool.features.map((feature) => `<li>${feature}</li>`).join("")
                 : "<li>No features found</li>"
             }
-          </ul>          
+            </ul>          
             <hr>
             <div class="flex justify-between items-center">
               <div>
@@ -52,7 +52,8 @@ const showAiTools = (tools) => {
                 }</p>
               </div>
               <div>
-                <button class="bg-[#FEF7F7] px-4 py-3 rounded-full color-[#EB5757]"><i class="fa-solid fa-arrow-right"></i></button>
+                <button type="button"
+                onclick="toggleModal('aiHubDetailsModal')" class="bg-[#FEF7F7] px-4 py-3 rounded-full color-[#EB5757]"><i class="fa-solid fa-arrow-right"></i></button>
               </div>
             </div>
         </div>
@@ -63,16 +64,16 @@ const showAiTools = (tools) => {
 
   // initially it shows first six tools
   const showMore = document.getElementById("show-more");
-  if (toolsData.length > tools.length + document.querySelectorAll(".show-more").length) {
+  if (toolsData.length > numToolsDisplayed) {
     showMore.classList.remove("hidden");
   } else {
     showMore.classList.add("hidden");
   }
 
-  // hide "Show more" button if all tools are displayed
+  /* // hide "Show more" button if all tools are displayed
   if (toolsData.length === document.querySelectorAll(".border").length) {
     document.getElementById("show-more").classList.add("hidden");
-  }
+  } */
 };
 
 /* Loading Spinner Function */
@@ -85,19 +86,28 @@ const toggleSpinner = (isLoading) => {
   }
 };
 
+/* Add event Listener to show more button an displayed all data  */
+let numToolsDisplayed = 6;
 document.getElementById("show-more-btn").addEventListener("click", async function () {
   // show loading spinner
   toggleSpinner(true);
 
   try {
-    const currentToolsLength = document.querySelectorAll(".border").length;
-    const nextTools = toolsData.slice(currentToolsLength, currentToolsLength + 6);
+    const nextTools = toolsData.slice(numToolsDisplayed, numToolsDisplayed + 6);
 
     // wait for 1 second to simulate loading time
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // display more tools
     showAiTools(nextTools);
+
+    // update the number of tools displayed
+    numToolsDisplayed += nextTools.length;
+
+    // hide "Show more" button if all tools are displayed
+    if (numToolsDisplayed === toolsData.length) {
+      document.getElementById("show-more").classList.add("hidden");
+    }
   } catch (error) {
     console.error(`Error loading more AI tools: ${error}`);
   } finally {
@@ -105,6 +115,8 @@ document.getElementById("show-more-btn").addEventListener("click", async functio
     toggleSpinner(false);
   }
 });
+
+/* Modal */
 
 // load the initial ai tools
 getAiUniverseHubData();
