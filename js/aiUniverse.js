@@ -134,9 +134,39 @@ const displayAIHubDetails = (tool) => {
   const modalImg = document.getElementById("modal-img");
   modalImg.src = tool.image_link[0] ? tool.image_link[0] : "No Image Found";
   const modalImgHeading = document.getElementById("modal-img-heading");
-  modalImgHeading.innerText = tool.input_output_examples[0].input ? tool.input_output_examples[0].input : "No input found";
-  const modalImgPara = document.getElementById('modal-img-para');
-  modalImgPara.innerText = tool.input_output_examples[0].output ? tool.input_output_examples[0].output : "No output found";
+  modalImgHeading.innerText = tool.input_output_examples[0].input
+    ? tool.input_output_examples[0].input
+    : "No input found";
+  const modalImgPara = document.getElementById("modal-img-para");
+  modalImgPara.innerText = tool.input_output_examples[0].output
+    ? tool.input_output_examples[0].output
+    : "No output found";
+
+  const featuresList = document.getElementById("features-list");
+  featuresList.innerHTML = `
+  <h1 class="font-bold">Features</h1>
+  <ul class="list-disc">
+    ${
+      tool.features && Object.keys(tool.features).length > 0
+        ? Object.keys(tool.features)
+            .map((key) => `<li>${tool.features[key].feature_name}</li>`)
+            .join("")
+        : "<li>No features found</li>"
+    }
+  </ul>
+`;
+
+  const integrationList = document.getElementById("integration-list");
+  integrationList.innerHTML = `
+  <h1 class="font-bold">Integrations</h1>
+  <ul class="list-disc">
+    ${
+      tool.integrations && tool.integrations.length > 0
+        ? tool.integrations.map((integration) => `<li>${integration}</li>`).join("")
+        : "<li>No integrations found</li>"
+    }
+  </ul>
+`;
 };
 
 // load the initial ai tools

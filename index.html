@@ -44,23 +44,30 @@
               class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
             >
               <!--body-->
-              <div class="relative p-6 flex gap-2 rounded " id="modal-features">
+              <div class="relative p-6 flex gap-2 rounded" id="modal-features">
                 <!-- AI Hub Description -->
-                <div class="bg-rose-50 p-3">
+                <div class="bg-rose-50 p-3 rounded">
                   <h1 id="modal-heading" class="font-semibold text-lg text-justify"></h1>
+                  <div class="grid grid-cols-2 mt-3">
+                    <!-- Features -->
+                    <div class="text-start p-3" id="features-list">
+                      <h1 class="font-bold">Features</h1>
+                      <ul class="list-disc">
+                        <li>No features found</li>
+                      </ul>
+                    </div>
+                    <!-- Integration -->
+                    <div id="integration-list" class="p-3">
+                      <h1 class="font-bold">Integration</h1>
+                      <ul class="list-disc">
+                        <li>No integrations found</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <!-- Features -->
-                  <div>
 
-                  </div>
-                  <!-- Integration -->
-                  <div>
-                    
-                  </div>
-                </div>
                 <!-- AI Hub Picture -->
-                <div class="border border-gray-300 mx-auto rounded p-3 " id="modal-examples">
+                <div class="border border-gray-300 mx-auto rounded p-3" id="modal-examples">
                   <img class="rounded" id="modal-img" />
                   <h1 id="modal-img-heading" class="font-bold text-center mt-2"></h1>
                   <p id="modal-img-para" class="text-center font-normal"></p>
