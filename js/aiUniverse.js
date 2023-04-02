@@ -167,6 +167,29 @@ const displayAIHubDetails = (tool) => {
     }
   </ul>
 `;
+
+  const pricingList = document.getElementById("pricing-list");
+  pricingList.innerHTML = `
+  <div class="flex flex-row gap-2 hover:-translate-y-1 hover:ease-in duration-300">
+    ${tool.pricing
+      .map(
+        (pricing, index) =>
+          `<div class="py-2 px-4 rounded shadow-md text-xl ${index % 2 == 0 ? "bg-gray-100" : "bg-white"}">
+            <span class="font-normal ${
+              pricing.plan === "Basic" ?  "text-green-700" : pricing.plan === "Pro" ? "text-orange-500" : "text-red-500"
+            }">${pricing.price}</span>
+            <span>${
+              pricing.plan === "Basic"
+                ? "<span class='text-green-700 font-bold'>" + pricing.plan + "</span>"
+                : pricing.plan === "Pro"
+                ? "<span class='text-orange-500 font-bold'>" + pricing.plan + "</span>"
+                : "<span class='text-red-500 font-bold'>" + pricing.plan + "</span>"
+            }</span>
+          </div>`
+      )
+      .join("")}
+  </div>
+`;
 };
 
 // load the initial ai tools
